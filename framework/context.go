@@ -16,6 +16,7 @@ type Context struct {
 	request        *http.Request
 	responseWriter http.ResponseWriter
 
+	//封装
 	ctx context.Context
 
 	hasTimeout bool
