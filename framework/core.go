@@ -1,19 +1,19 @@
 package framework
 
 import (
-	"fmt"
 	"log"
 	"net/http"
 )
 
 type Core struct {
 	//控制器
-	router map[string]ControllerHandler
+	//router map[string]ControllerHandler
+	router map[string]map[string]ControllerHandler
 }
 
 func NewCore() *Core {
 	//return &Core{}
-	return &Core{router: map[string]ControllerHandler{}}
+	return &Core{router: map[string]map[string]ControllerHandler{}}
 }
 
 func (c *Core) Get(url string, handler ControllerHandler) {
@@ -37,13 +37,5 @@ func (c *Core) ServeHTTP(response http.ResponseWriter, request *http.Request) {
 
 	// ???
 	// 执行控制器的函数
-	fmt.Printf("%T", router)
-	fmt.Println("------")
-	fmt.Println(ctx.request.URL)
-	fmt.Println(ctx.request.Body)
-	fmt.Println(ctx.request.Header)
-	fmt.Println(ctx.request.RemoteAddr)
-	fmt.Println(ctx.request.Host)
-
 	router(ctx)
 }
